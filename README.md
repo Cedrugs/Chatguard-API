@@ -1,4 +1,4 @@
-# Chatguard
+# Chatguard API
 Chat smarter, speak kinder.
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](#)
@@ -54,6 +54,8 @@ export MODEL_ID=your-username/toxic-xlmr
 export DEVICE=cuda      # or cpu
 export MAX_LENGTH=256
 ```
+
+Or you can use the default on https://huggingface.co/cedrugs/toxic-xlmr (cedrugs/toxic-xlmr)
 
 ### 3) Run
 ```bash
@@ -130,24 +132,13 @@ Response:
 
 ## Docker
 
-**Dockerfile** (example):
-```dockerfile
-FROM python:3.11-slim
-WORKDIR /app
-COPY . .
-RUN pip install --no-cache-dir -r requirements.txt
-ENV MODEL_ID=your-username/toxic-xlmr
-EXPOSE 8000
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
-```
-
 Build & run:
 ```bash
-docker build -t toxicity-api .
+docker build -t chatguard-api .
 docker run --rm -p 8000:8000 \
   -e MODEL_ID=your-username/toxic-xlmr \
   -e DEVICE=cpu \
-  toxicity-api
+  chatguard-api
 ```
 
 ---
